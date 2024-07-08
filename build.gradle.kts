@@ -1,7 +1,11 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
 //	java
     application
     checkstyle
+    jacoco
     id("org.springframework.boot") version "3.3.1"
     id("io.spring.dependency-management") version "1.1.5"
 }
@@ -33,4 +37,10 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+    }
 }
