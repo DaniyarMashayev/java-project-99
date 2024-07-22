@@ -37,8 +37,8 @@ public abstract class TaskMapper {
 
     @Mapping(source = "name", target = "title")
     @Mapping(source = "description", target = "content")
-    @Mapping(source = "taskStatus", target = "status")
-    @Mapping(source = "assignee", target = "assigneeId")
+    @Mapping(source = "taskStatus.slug", target = "status")
+    @Mapping(source = "assignee.id", target = "assigneeId")
     public abstract TaskDTO map(Task task);
 
 
