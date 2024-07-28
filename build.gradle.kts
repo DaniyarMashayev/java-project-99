@@ -2,7 +2,6 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
-//	java
     application
     checkstyle
     jacoco
@@ -10,25 +9,36 @@ plugins {
     id("io.spring.dependency-management") version "1.1.5"
     id("io.freefair.lombok") version "8.6"
     id("com.github.ben-manes.versions") version "0.50.0"
-    id("io.sentry.jvm.gradle") version "4.4.1"
+    id("io.sentry.jvm.gradle") version "4.10.0"
 }
 
 group = "hexlet.code"
 version = "0.0.1-SNAPSHOT"
 
 application {
-    mainClass.set("hexlet.code.app.AppApplication")
+    mainClass.set("hexlet.code.AppApplication")
 }
-
-//java {
-//	toolchain {
-//		languageVersion = JavaLanguageVersion.of(21)
-//	}
-//}
 
 repositories {
     mavenCentral()
 }
+
+checkstyle {
+    toolVersion = "10.3.3"
+}
+
+sentry {
+    includeSourceContext = true
+
+    org = "mycompany-ln"
+    projectName = "java-spring-boot-nj"
+    authToken = System.getenv("SENTRY_AUTH_TOKEN")
+}
+
+tasks.sentryBundleSourcesJava {
+    enabled = System.getenv("SENTRY_AUTH_TOKEN") != null
+}
+
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")

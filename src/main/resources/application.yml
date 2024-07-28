@@ -1,32 +1,38 @@
 ---
-logging:
-  level:
-    root: WARN
-    org:
-      springframework:
-        # web: DEBUG
-        security: DEBUG
 
-spring:
-  # mvc:
-  #   log-request-details: true
-  #   log-resolved-exception: true
-  # codec:
-  #   log-request-details: true
-  jpa:
-    generate-ddl: true
-    show-sql: true
-  output:
-    ansi:
-      enabled: always
+  spring:
+    jpa:
+      generate-ddl: true
+      show-sql: true
+      hibernate:
+        ddl-auto: create-drop
+    output:
+      ansi:
+        enabled: always
+    instancio:
+      bean:
+        validation:
+          enabled: true
+    sql:
+      init:
+        mode: always
+    profiles:
+      default: development
 
-sentry:
-  dsn: https://examplePublicKey@o0.ingest.sentry.io/0
-  tracesSampleRate: 1.0
+  logging:
+    level:
+      root: INFO
 
-rsa:
-  private-key: classpath:certs/private.pem
-  public-key: classpath:certs/public.pem
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html
+    api-docs:
+      path: /api-docs
 
-server:
-  address: 0.0.0.0
+  sentry:
+    dsn: https://737ff25fbf6e3a3724ddf6bdef1cd7d4@o4507657069330432.ingest.us.sentry.io/4507680061980672
+    traces-sample-rate: 1.0
+
+  rsa:
+    private-key: classpath:certs/private.pem
+    public-key: classpath:certs/public.pem
