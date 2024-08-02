@@ -50,11 +50,4 @@ public class Label implements BaseEntity {
         tasks.add(task);
         task.getLabels().add(this);
     }
-
-    public void removeTask(Task task) {
-        tasks.remove(task);
-        task.getLabels().remove(this);
-    }
 }
-
-

@@ -116,14 +116,6 @@ public class TaskService {
     }
 
     public void delete(Long id) {
-        var task = taskRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Task with id " + id + " not found"));
-        var assignee = task.getAssignee();
-        if (assignee != null) {
-            assignee.removeTask(task);
-        }
-        task.getTaskStatus().removeTask(task);
-        task.getLabels().forEach(label -> label.removeTask(task));
         taskRepository.deleteById(id);
     }
 }

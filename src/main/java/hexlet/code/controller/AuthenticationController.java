@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     @Autowired
-    private JWTUtils jwtUtils;
+    private final JWTUtils jwtUtils;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     @PostMapping("/api/login")
     public String create(@RequestBody @Valid AuthRequest authRequest) {
